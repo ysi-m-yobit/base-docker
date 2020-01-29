@@ -1,0 +1,3 @@
+[submodule "www/html/base-laravel"]
+	path = www/html/base-laravel
+	url = git@github.com:ysi-m-yobit/base-laravel.git
