@@ -13,6 +13,7 @@ services:
     build: ./docker/php-fpm
     volumes:
       - ./www:/var/www
+      - ./docker/php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     depends_on:
       - mariadb
   mariadb:

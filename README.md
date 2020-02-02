@@ -1,22 +1,4 @@
 # base-docekr
-やりたいこと
- - Dockerで開発とテスト
- - laravelとVueで作る
- - MariaDBを使う
- - テストが動くようにする
- - CycleCIでテストOKになったら本番にデプロイする
-
-今やってあること
- - DockerComposerでnginxとmariadbとphp-fpmのコンテナが動くようにした
- - php-fpmにlaravelをインストールした
- - laravelのenvをmariadbに接続するよう変更した
-
-やること
- - Vueを使えるようにする
- - テストが実行できるようにする
- - laravelで適当に何かサンプルを作ってみる
- - CycleCIと連携する
- - 本番に反映できるようにする
  
 # サイト環境系  
 ## 言語   
@@ -36,6 +18,8 @@ https://app.circleci.com/
 ## Git  
 https://github.com/ysi-m-yobit 
 
+## IDE
+Visual Studio Code
 
 # ローカル環境の構築の仕方
 ## 1.dockerを入れる
@@ -76,7 +60,7 @@ dockerコンテナにログインしてcomposerを元にPHPのライブラリ達
 
 ```bash
 # php-fpmのdockerコンテナにログイン
-docker-compose exec php-fpm /bin/sh
+docker-compose exec php-fpm sh
 # (コンテナ内)ソースがある場所に移動
 cd base-larave/
 # composerで管理されているライブラリをインストール
@@ -88,3 +72,27 @@ php artisan key:generate
 
 ## 6.確認
 ローカルPCから `http://localhost/` にアクセスして動作確認。画面が表示されたらOK!
+
+
+# VSCodeの設定
+
+## 拡張機能
+ - PHP IntelliSense
+ - PHP Debug
+
+## XDebugの接続設定
+デバッグのタブから、構成をPHPで追加。  
+launch.jsonで以下のようにpathMappingsを追加。  
+(WorkSpaceはbase-dockerのリポジトリフォルダを読み込んでいることが前提)
+```
+"configurations": [
+    {
+        "name": "Listen for XDebug",
+        "type": "php",
+        "request": "launch",
+        "port": 9001,
+        "pathMappings": {
+            "/var/www": "${workspaceRoot}/www"
+        }
+    },
+```
