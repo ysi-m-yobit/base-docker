@@ -26,4 +26,4 @@ services:
       MYSQL_DATABASE: testdb
     volumes:
       - ./docker/mariadb/my.cnf:/etc/mysql/my.cnf
-      - ./db-data:/var/lib/mysql
+      - ./data:/var/lib/mysql
