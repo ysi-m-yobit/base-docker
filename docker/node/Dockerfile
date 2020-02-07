@@ -1,6 +1,6 @@
-FROM node:latest
+FROM node:13.7-alpine3.10
 
-ADD ./www/html/base-laravel /app
+RUN apk --update add \
+    && apk add build-base curl git zip unzip vim \
+    && apk add --update --no-cache oniguruma-dev
 WORKDIR /app
-
-CMD ["/bin/sh"]
