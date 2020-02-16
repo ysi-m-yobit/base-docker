@@ -75,7 +75,7 @@ dockerコンテナにログインしてcomposerを元にPHPのライブラリ達
 # php-fpmのdockerコンテナにログイン
 docker-compose exec php-fpm sh
 # (コンテナ内)ソースがある場所に移動
-cd base-larave
+cd base-laravel
 # composerで管理されているライブラリをインストール
 composer install
 # Laravelのエンクリプタを使用する準備
