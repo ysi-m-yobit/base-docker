@@ -39,10 +39,23 @@ docker login --username  {ユーザー名}
 Password: {アクセストークン}
 ```
 
-## 3.docker実行
+## 3.gitリポジトリのclone
+base-dockerをcloneする。  
+サブモジュールの初回clone、および最新のブランチに合わせるため、   
+base-dockerのrootディレクトリで以下のコマンドを実行。  
 ```bash
 # gitから落としてきたソースの場所に移動
-cd base-laravel
+cd base-docker
+# submoduleの初回ダウンロード
+git submodule update --init --recursive
+# submodule内を指定のリモートブランチに更新
+git submodule foreach git pull origin master
+```
+
+## 4.docker実行
+```bash
+# gitから落としてきたソースの場所に移動
+cd base-docker
 # dockerイメージをローカルに持ってきたりphp設定したり。構築する
 # 〇〇 is already loaded! とか言われるけど多分大丈夫。  
 docker-compose build
